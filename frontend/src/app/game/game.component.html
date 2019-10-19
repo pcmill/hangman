@@ -1,0 +1,52 @@
+<a routerLink="/highscore">
+    <i class="icon-keyboard_backspace"></i>
+    Highscore
+</a>
+
+<div class="game">
+    <div class="top">
+        <h1>HANGMAN</h1>
+        <button (click)="newGame()" class="new-game">
+            <i class="icon-replay"></i>
+            NEW GAME
+        </button>
+    </div>
+    
+    <div class="current-game" *ngIf="!game.won && !game.lost">
+        <div class="guesses-left">
+            <p>{{ game.guessesLeft }} wrong guesses left</p>
+        </div>
+
+        <div class="letters">
+            <div class="letter" *ngFor="let position of game.lettersToGuess">
+                <span *ngIf="revealLetter(position)">{{ position }}</span>
+                <span *ngIf="!revealLetter(position)">_</span>
+            </div>
+        </div>
+
+        <div class="lettersInput" *ngIf="game">
+            <app-letter [letter]="letter" *ngFor="let letter of game.letters"></app-letter>
+        </div>
+    </div>
+
+    <div class="result" *ngIf="game.won">
+        <h2>You have won with a score of {{ game.currentScore }}!</h2>
+
+        <p>Type in your initials to remember the score.</p>
+
+        <div class="highscore-input">
+            <input type="text" placeholder="AAA" maxlength="3" [(ngModel)]="initials">
+            <button (click)="setScore()">SET HIGHSCORE</button>
+        </div>
+    </div>
+
+    <div class="result" *ngIf="game.lost">
+        <h2>You have lost...</h2>
+        <p>The word was <span *ngFor="let letter of game.lettersToGuess">{{ letter }}</span>.</p>
+
+        <button (click)="newGame()" class="new-game">
+            <i class="icon-replay"></i>
+            NEW GAME
+        </button>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+.letter {
+    border: none;
+    border-radius: 4px;
+    background-color: #b9b9b9;
+    color: white;
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+
+    &:hover {
+        background-color: #999;
+        color: #222;
+        cursor: pointer;
+    }
+
+    &:disabled {
+        background-color: #f4f4f4;
+        color: #ccc;
+    }
+}
