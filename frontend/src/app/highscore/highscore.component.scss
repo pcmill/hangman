@@ -1,0 +1,34 @@
+:host {
+    width: 45%;
+}
+
+a {
+    margin-bottom: 10px;
+}
+
+.highscore {
+    background-color: white;
+    margin-top: 10px;
+}
+
+.no-score {
+    padding: 20px;
+    margin: 0;
+}
+
+.scores {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.score-item {
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+
+    span {
+        margin-left: auto;
+        font-size: 18px;
+    }
+}

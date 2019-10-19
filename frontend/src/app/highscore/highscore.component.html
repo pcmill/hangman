@@ -1,0 +1,19 @@
+<a routerLink="/game">
+    <i class="icon-keyboard_backspace"></i>
+    Back to game
+</a>
+
+<div class="highscore">
+    <div class="top">
+        <h1>HIGHSCORES</h1>
+    </div>
+
+    <div class="scores">
+        <p *ngIf="scores && scores.length === 0" class="no-score">Play the game and set your first highscore!</p>
+
+        <div class="score-item" *ngFor="let score of scores">
+            <h3>{{ score.initials }}</h3>
+            <span>{{ score.score }}</span>
+        </div>
+    </div>
+</div>
