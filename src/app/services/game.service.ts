@@ -12,6 +12,9 @@ export class GameService {
 
   constructor() { }
 
+  /**
+   * Initializes the game with a word to guess.
+   */
   public initGame() {
     const game: Game = {
       created: Date.now(),
@@ -26,10 +29,17 @@ export class GameService {
     this.game.next(game);
   }
 
+  /**
+   * Get the current game data as an observable to subscribe to.
+   */
   public getGame(): Observable<Game | undefined> {
     return this.game.asObservable();
   }
 
+  /**
+   * This function will process a guess and move the game along.
+   * @param letter Letter
+   */
   public addGuess(letter: Letter) {
     let game = this.game.getValue();
 
@@ -54,6 +64,10 @@ export class GameService {
     this.game.next(game);
   }
 
+  /**
+   * Checks if the game is finished and if the player won or lost.
+   * @param game Game
+   */
   private isEndOfGame(game: Game) {
     const won = game.lettersToGuess.reduce((accumulator, letter) => {
       const foundLetter = game.letters.find((position) => {
@@ -75,13 +89,18 @@ export class GameService {
   }
 
   /**
-    The quicker you guess the right word the higher the score will be.
-  */
+   * Calculates the score if the player won.
+   * The quicker you guess the right word the higher the score will be.
+   * @param timeStarted number
+   */
   private calculateScore(timeStarted: number) {
     const elapsedTime = Date.now() - timeStarted;
     return this.START_SCORE - elapsedTime;
   }
 
+  /**
+   * Creates an array of letters which the player can click on.
+   */
   private getLetters(): Array<Letter> {
     const letters = Array.from('abcdefghijklmnopqrstuvwxyz0123456789').map((letter) => {
       return {
@@ -93,6 +112,9 @@ export class GameService {
     return letters;
   }
 
+  /**
+   * Returns a new word to guess.
+   */
   private getNewWord(): Array<string> {
     const words = ['3dhubs', 'marvin', 'print', 'filament', 'order', 'layer'];
     const randomWord = words[Math.floor(Math.random() * words.length)];

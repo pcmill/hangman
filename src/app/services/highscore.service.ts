@@ -7,6 +7,10 @@ import { Highscore } from '../models/highscore.model';
 export class HighscoreService {
   constructor() { }
 
+  /**
+   * Adds a score to the localstorage.
+   * @param score Highscore
+   */
   public addScore(score: Highscore) {
     if (localStorage.getItem('scores')) {
       let scoreArray: Array<Highscore> = JSON.parse(localStorage.getItem('scores'));
@@ -18,6 +22,9 @@ export class HighscoreService {
     }
   }
 
+  /**
+   * Gets all the scores currently in the localstorage.
+   */
   public getScores() {
     const score = JSON.parse(localStorage.getItem('scores'));
 
